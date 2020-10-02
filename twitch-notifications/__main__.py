@@ -16,7 +16,6 @@ if __name__ == "__main__":
         for message in data.split('\r\n'):
             if not message:
                 continue
-            print('< ' + message)
             msg = message.split(' ')
 
             if msg[0] == 'PING':
