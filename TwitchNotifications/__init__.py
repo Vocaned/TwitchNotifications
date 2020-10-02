@@ -1,12 +1,12 @@
 import os
 import json
 import re
-import config
-from notification import sendNotif
-from sock import Socket
+from TwitchNotifications.config import getConfig
+from TwitchNotifications.notification import sendNotif
+from TwitchNotifications.sock import Socket
 
-if __name__ == "__main__":
-    c = config.getConfig()
+def main():
+    c = getConfig()
 
     socket = Socket(('irc.twitch.tv', 6667), password=c['password'], nick=c['username'], join=c['channels'])
     while True:
@@ -36,3 +36,6 @@ if __name__ == "__main__":
                     if re.search(regex, message):
                         sendNotif(channel, username, message)
                         continue
+
+if __name__ == '__main__':
+    main()

@@ -1,10 +1,10 @@
-import config
+from TwitchNotifications.config import getConfig
 import json
 import requests
 from datetime import datetime
 
 def sendNotif(channel: str, username: str, message: str):
-    c = config.getConfig()
+    c = getConfig()
 
     print('Sending notification: ' + message)
 
