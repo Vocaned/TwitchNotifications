@@ -18,6 +18,10 @@ def main():
                 continue
             msg = message.split(' ')
 
+            if len(msg) == 1:
+                print('> ' + ' '.join(msg))
+                continue
+
             if msg[0] == 'PING':
                 socket.sendPacket('PONG ' + msg[1])
             elif msg[1] == 'PRIVMSG':
