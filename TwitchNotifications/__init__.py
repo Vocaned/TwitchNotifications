@@ -19,14 +19,13 @@ def main():
             msg = message.split(' ')
 
             if len(msg) == 1:
-                print('> ' + ' '.join(msg))
-                continue
+                continue # FIXME: partial packet
 
             if msg[0] == 'PING':
                 socket.sendPacket('PONG ' + msg[1])
             elif msg[1] == 'PRIVMSG':
-                channel = data.split('#')[1].split(' :')[0]
-                username = data.split('!')[0].lstrip(':')
+                username = msg[0].split('!')[0].lstrip(':')
+                channel = msg[2].lstrip('#')
                 message = ':'.join(message.split(':')[2:])
 
                 if message.startswith('\x01'):
@@ -39,7 +38,7 @@ def main():
                 for regex in c['regexNotifs']:
                     if re.search(regex, message, re.IGNORECASE):
                         sendNotif(channel, username, message)
-                        continue
+                        break
 
 if __name__ == '__main__':
     main()
