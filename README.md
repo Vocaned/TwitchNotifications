@@ -1,4 +1,4 @@
-# twitch-notifications
+# TwitchNotifications
 
 Simple IRC client that does nothing but send you a notification when your name or another word/phrase/regex is said.
 

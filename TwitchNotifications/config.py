@@ -7,7 +7,7 @@ import os
 # {channel}  = Replaced with the channel where the message was sent
 # {time}     = Replaced with current time
 
-def makeConfig() -> dict:
+def makeConfig():
     logininfo = input('Login info (https://chatterino.com/client_login): ')
     password = 'oauth:' + logininfo.split('oauth_token=')[1].split(';')[0]
     username = logininfo.split('username=')[1].split(';')[0]
@@ -35,13 +35,12 @@ def makeConfig() -> dict:
         exit(1)
 
     j = json.dumps({'password': password, 'username': username, 'channels': channels, 'channelNotifs': channelNotifs, 'regexNotifs': regexNotifs, 'notifType': notifType, 'notifParams': notifParams, 'notifContent': notifContent})
-    with open('config.json', 'w') as f:
+    with open(os.path.join(os.path.expanduser('~'), 'twitchnotifications.conf'), 'w') as f:
         f.write(j)
-    return j
 
 def getConfig() -> dict:
-    if os.path.exists('config.json'):
-        with open('config.json') as f:
+    if not os.path.exists(os.path.join(os.path.expanduser('~'), 'twitchnotifications.conf')):
+        makeConfig()
+
+    with open(os.path.join(os.path.expanduser('~'), 'twitchnotifications.conf')) as f:
             return json.loads(f.read())
-    else:
-        return makeConfig()

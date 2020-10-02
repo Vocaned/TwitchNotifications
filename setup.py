@@ -1,17 +1,23 @@
 import setuptools
 
-with open("readme.md", "r") as fh:
+with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="twitch-notifications", # Replace with your own username
+    name="TwitchNotifications",
     version="0.1",
     author="Fam0r",
+    author_email="fam0riizi@gmail.com",
     description="Twitch chat notifications",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Fam0r/twitch-notifications",
-    packages=setuptools.find_packages(),
+    url="https://github.com/Fam0r/TwitchNotifications",
+    packages=['TwitchNotifications'],
+    entry_points={
+        'console_scripts': [
+            'TwitchNotifications=TwitchNotifications:main'
+        ]
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "Environment :: Console",
