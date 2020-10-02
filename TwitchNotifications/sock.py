@@ -18,7 +18,7 @@ class Socket(socket.socket):
 
 
     def readPacket(self) -> str:
-        return self.recv(2048).decode('utf-8')
+        return self.recv(2048).decode('utf-8', 'ignore')
 
     def sendPacket(self, data: str):
         print('> ' + data)
