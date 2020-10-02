@@ -33,7 +33,7 @@ def main():
                     continue
 
                 for regex in c['regexNotifs']:
-                    if re.search(regex, message):
+                    if re.search(regex, message, re.IGNORECASE):
                         sendNotif(channel, username, message)
                         continue
 
