@@ -6,5 +6,6 @@ This is meant for use with Twitch chat. It might or might not work on other IRC 
 
 Supported notification services:
 
-* Webhook/HTTP POST
+* HTTP POST
+* Discord Webhook
 * Telegram (planned)
