@@ -7,6 +7,9 @@ import os
 # {channel}  = Replaced with the channel where the message was sent
 # {time}     = Replaced with current time
 
+# notifOptions can be one of the following:
+# escapediscord = Escapes discord formatting
+
 def makeConfig():
     logininfo = input('Login info (https://chatterino.com/client_login): ')
     password = 'oauth:' + logininfo.split('oauth_token=')[1].split(';')[0]
