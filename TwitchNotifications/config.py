@@ -35,12 +35,12 @@ def makeConfig():
         exit(1)
 
     j = json.dumps({'password': password, 'username': username, 'channels': channels, 'channelNotifs': channelNotifs, 'regexNotifs': regexNotifs, 'notifType': notifType, 'notifParams': notifParams, 'notifContent': notifContent})
-    with open(os.path.join(os.path.expanduser('~'), 'twitchnotifications.conf'), 'w') as f:
+    with open(os.path.join(os.path.expanduser('~'), 'twitchnotifications.json'), 'w') as f:
         f.write(j)
 
 def getConfig() -> dict:
-    if not os.path.exists(os.path.join(os.path.expanduser('~'), 'twitchnotifications.conf')):
+    if not os.path.exists(os.path.join(os.path.expanduser('~'), 'twitchnotifications.json')):
         makeConfig()
 
-    with open(os.path.join(os.path.expanduser('~'), 'twitchnotifications.conf')) as f:
+    with open(os.path.join(os.path.expanduser('~'), 'twitchnotifications.json')) as f:
             return json.loads(f.read())
