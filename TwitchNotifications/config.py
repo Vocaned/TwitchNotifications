@@ -23,6 +23,7 @@ def makeConfig():
 
         notifContent = '''[{time}] {username}: {message}'''
 
+        notifOptions = ''
     elif notifType == 'discord':
         notifType = 'post'
         notifParams = input('Discord webhook URL: ')
@@ -30,11 +31,14 @@ def makeConfig():
         notifContent = '''{
 "content": "`{time}`\\n[**{username}**@{channel}] {message}"
 }'''
+
+        # If you have a custom notify content and the message is inside a code block, disable this
+        notifOptions = 'escapediscord'
     else:
         print('Invalid notification type. Aborting.')
         exit(1)
 
-    j = json.dumps({'password': password, 'username': username, 'channels': channels, 'channelNotifs': channelNotifs, 'regexNotifs': regexNotifs, 'notifType': notifType, 'notifParams': notifParams, 'notifContent': notifContent})
+    j = json.dumps({'password': password, 'username': username, 'channels': channels, 'channelNotifs': channelNotifs, 'regexNotifs': regexNotifs, 'notifType': notifType, 'notifParams': notifParams, 'notifContent': notifContent, 'notifOptions': notifOptions})
     with open(os.path.join(os.path.expanduser('~'), 'twitchnotifications.json'), 'w') as f:
         f.write(j)
 
