@@ -24,6 +24,9 @@ def main():
             if msg[0] == 'PING':
                 socket.sendPacket('PONG ' + msg[1])
             elif msg[1] == 'PRIVMSG':
+                if len(msg) < 3:
+                    continue # FIXME: partial packet
+
                 username = msg[0].split('!')[0].lstrip(':')
                 channel = msg[2].lstrip('#')
                 message = ':'.join(message.split(':')[2:])
