@@ -31,7 +31,7 @@ def makeConfig():
         notifType = 'post'
         notifParams = input('Discord webhook URL: ')
 
-        notifContent = json.dumps('{"content": "`{time}`\n[**{username}**@{channel}] {message}"}')
+        notifContent = json.dumps('{"content": "`{time}`\\n[**{username}**@{channel}] {message}"}')
 
         # If you have a custom notify content and the message is inside a code block, disable this
         notifOptions = 'escapediscord'

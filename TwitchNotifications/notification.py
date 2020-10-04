@@ -4,7 +4,7 @@ import typing
 import requests
 from datetime import datetime
 
-def escape(string: str, char: typing.Union[str, list], escapeChar: str = '\\') -> str:
+def escape(string: str, char: typing.Union[str, list], escapeChar: str = '\\\\') -> str:
     if isinstance(char, str):
         return string.replace(char, escapeChar+char)
 
@@ -17,12 +17,12 @@ def sendNotif(channel: str, username: str, message: str):
 
     print('Sending notification: ' + message)
 
-    content = c['notifContent'].replace('{channel}', channel).replace('{username}', username).replace('{time}', str(datetime.now()).split('.')[0]).replace('{message}', message)
-
     if c['notifOptions'] == 'escapediscord':
-        content = content.replace('@everyone', '@\\everyone').replace('@here', '@\\here')
-        content = escape(content, ['_', '*', '~'])
+        message = message.replace('@everyone', '@\\\\everyone').replace('@here', '@\\\\here')
+        message = escape(message, ['_', '*', '~'])
+
+    content = c['notifContent'].replace('{channel}', channel).replace('{username}', username).replace('{time}', str(datetime.now()).split('.')[0]).replace('{message}', message)
 
     if c['notifType'] == 'post':
         j = json.loads(content)
-        requests.post(c['notifParams'], data=j)
+        requests.post(c['notifParams'], data=j.encode('utf-8'), headers={'Content-Type': 'application/json'})
