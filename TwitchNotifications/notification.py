@@ -4,7 +4,9 @@ import typing
 import requests
 from datetime import datetime
 
-def escape(string: str, char: typing.Union[str, list], escapeChar: str = '\\\\') -> str:
+# First escaping python, then escaping string, then escaping json, then escaping discord = \\\\\\\\
+# fucking spaghetti lol
+def escape(string: str, char: typing.Union[str, list], escapeChar: str = '\\\\\\\\') -> str:
     if isinstance(char, str):
         return string.replace(char, escapeChar+char)
 
