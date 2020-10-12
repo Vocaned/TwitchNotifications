@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="TwitchNotifications",
-    version="0.4",
+    version="0.5",
     author="Fam0r",
     author_email="fam0riizi@gmail.com",
     description="Twitch chat notifications",

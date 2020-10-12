@@ -23,6 +23,7 @@ def sendNotif(channel: str, username: str, message: str):
         message = message.replace('@everyone', '@\\\\everyone').replace('@here', '@\\\\here')
         message = escape(message, ['_', '*', '~'])
 
+    message = escape(message, '"')
     content = c['notifContent'].replace('{channel}', channel).replace('{username}', username).replace('{time}', str(datetime.now()).split('.')[0]).replace('{message}', message)
 
     if c['notifType'] == 'post':
